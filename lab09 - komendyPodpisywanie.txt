@@ -1,0 +1,73 @@
+h: akashi29
+alizas: eliza
+keystore: elizakeys.jks
+
+// Tworzenie Jara:
+//uda³o siê
+keytool -genkeypair -keyalg rsa -keysize 2048 -alias eliza -keystore elizakeys.jks -dname "CN=Eliza Kalata"
+
+
+keytool -certreq -alias eliza -keystore elizakeys.jks > elizacert.csr
+
+
+keytool -import -alias eliza -file elizacert.pem -keystore elizakeys.jks
+//keytool error: java.io.FileNotFoundException: elizacert.pem (Nie mo¿na odnaleŸæ okreœlonego pliku)
+
+
+keytool -export -keystore elizakeys.jks -alias eliza -file Eliza_pub.cer
+//Certificate stored in file <Eliza_pub.cer>
+
+jarsigner -keystore elizakeys.jks -storepass akashi29 -keypass akashi29 -signedjar sjarLab09.jar jarLab09.jar eliza
+
+jar signed.
+
+Warning:
+The signer's certificate is self-signed.
+The signer certificate will expire within six months.
+No -tsa or -tsacert is provided and this jar is not timestamped. Without a timestamp, users may not be able to validate this jar after the signer certificate's expiration date (2019-08-10) or after any future revocation date.
+
+
+jarsigner -verify -certs -verbose sjarLab09.jar
+
+
+s        187 Sun May 12 13:41:30 CEST 2019 META-INF/MANIFEST.MF
+
+      >>> Signer
+      X.509, CN=Eliza Kalata
+      [certificate will expire on 10.08.19 13:38]
+      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+
+         393 Sun May 12 13:41:30 CEST 2019 META-INF/ELIZA.SF
+        1115 Sun May 12 13:41:30 CEST 2019 META-INF/ELIZA.RSA
+sm       301 Fri May 10 11:38:24 CEST 2019 .classpath
+
+      >>> Signer
+      X.509, CN=Eliza Kalata
+      [certificate will expire on 10.08.19 13:38]
+      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+
+sm       380 Fri May 10 11:38:24 CEST 2019 .project
+
+      >>> Signer
+      X.509, CN=Eliza Kalata
+      [certificate will expire on 10.08.19 13:38]
+      [Invalid certificate chain: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+
+
+  s = signature was verified
+  m = entry is listed in manifest
+  k = at least one certificate was found in keystore
+  i = at least one certificate was found in identity scope
+
+- Signed by "CN=Eliza Kalata"
+    Digest algorithm: SHA-256
+    Signature algorithm: SHA256withRSA, 2048-bit key
+
+jar verified.
+
+Warning:
+This jar contains entries whose certificate chain is invalid. Reason: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+This jar contains entries whose signer certificate will expire within six months.
+This jar contains signatures that does not include a timestamp. Without a timestamp, users may not be able to validate this jar after the signer certificate's expiration date (2019-08-10) or after any future revocation date.
+
+

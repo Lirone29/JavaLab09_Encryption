@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.cypherController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="400.0" prefWidth="420.0">
+         <children>
+            <Button fx:id="selectButton" layoutX="220.0" layoutY="170.0" mnemonicParsing="false" onAction="#selectFile" prefHeight="25.0" prefWidth="100.0" text="Select file" />
+            <Button fx:id="generateKeysButton" layoutX="30.0" layoutY="300.0" mnemonicParsing="false" onAction="#generateKeys" text="Generate Keys" />
+            <Button fx:id="encryptButton" layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#encryptFile" prefHeight="25.0" prefWidth="100.0" text="Encrypt" />
+            <Button fx:id="decryptButton" layoutX="290.0" layoutY="300.0" mnemonicParsing="false" onAction="#decryptFile" prefHeight="25.0" prefWidth="100.0" text="Decrypt" />
+            <TextField fx:id="destinationTextField" layoutX="220.0" layoutY="218.0" />
+            <Label fx:id="destinationLabel" layoutX="30.0" layoutY="222.0" prefHeight="17.0" prefWidth="92.0" text="Destination File" />
+            <Label fx:id="fileLabel" layoutX="30.0" layoutY="174.0" text="File:" />
+            <TextField fx:id="privateKeyTextField" layoutX="30.0" layoutY="30.0" promptText="Private Key" />
+            <Button fx:id="loadPrivateKeyButton" layoutX="220.0" layoutY="30.0" mnemonicParsing="false" onAction="#choosePrivateKey" prefHeight="25.0" prefWidth="109.0" text="Load Private Keys" />
+            <TextField fx:id="publicKeyTextField" layoutX="30.0" layoutY="85.0" promptText="Public Key" />
+            <Button fx:id="publicKeyButton" layoutX="220.0" layoutY="85.0" mnemonicParsing="false" onAction="#choosePublicKey" text="Load Public Key" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
